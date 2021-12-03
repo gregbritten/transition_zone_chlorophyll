@@ -1,6 +1,8 @@
 # Greg's folders
 /processed_data
 
+/plots
+
 # History files
 .Rhistory
 .Rapp.history

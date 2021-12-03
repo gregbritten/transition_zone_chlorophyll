@@ -3,20 +3,15 @@ rm(list=ls())
 library(viridis)
 library(fields)
 
-#source('d:/dropbox/working/gradients/tzcf/github/greg/load_data.r')
-source("~/dropbox/working/gradients/tzcf/github/greg/load_data.r")
+source("r/load_data.r")
 
 load(file="~/dropbox/working/gradients/tzcf/data/WOA_N.rdata")
 load(file="~/dropbox/working/gradients/tzcf/data/WOA_P.rdata")
 load(file="~/dropbox/working/gradients/tzcf/data/WOA_depth.rdata")
 
-load("~/dropbox/working/gradients/tzcf/data/OCNPRD_MLD_time.rdata")
-time <- decimal_date(ymd(ocnprd_date))
-
-lat <- seq(0,65,length.out=130)
-lon <- seq()
-mnth_ocn <- month(ocnprd_date)
-mnth_mld <- month(mld_time)
+lat  <- seq(0,65,length.out=130)
+lon  <- seq(-180,-115,length.out=130)
+mnth <- month(date)
 
 LAT <- list()
 LAT[['lat00_10']] <- which(lat >=0  & lat <10)
@@ -29,36 +24,30 @@ LAT[['lat50_60']] <- which(lat >=50 & lat <60)
 zz <- 1:30
 zs <- z[zz]
 
-load('~/dropbox/working/gradients/tzcf/data/PAR_MLD.rdata')
-
-
 chl=mld=zmld=c=chlc=mu=npp=par=kd=e=dn=parmld <- matrix(NA,nrow=6,ncol=12)
 for(i in 1:6){
   for(k in 1:12){
   
-      tmpchl                <- CHL[,LAT[[i]],mnth_ocn==k]
+      tmpchl                <- CHL[,LAT[[i]],mnth==k]
       chl[i,k]              <- mean(tmpchl,na.rm=TRUE)
       
-      tmpmld                <- MLD[,LAT[[i]],mnth_ocn==k]
+      tmpmld                <- MLD[,LAT[[i]],mnth==k]
       mld[i,k]              <- mean(tmpmld,na.rm=TRUE)
       
-      tmpc                  <- C[,LAT[[i]],mnth_ocn==k]
+      tmpc                  <- CARBON[,LAT[[i]],mnth==k]
       c[i,k]                <- mean(tmpc,na.rm=TRUE)
       
       chlc[i,k]             <- chl[i,k]/c[i,k] 
       
-      tmpmu                 <- MU[,LAT[[i]],mnth_ocn==k]
-      mu[i,k]               <- mean(tmpmu, na.rm=TRUE)
+      #npp[i,k]              <- mu[i,k]*c[i,k]
       
-      npp[i,k]              <- mu[i,k]*c[i,k]
-      
-      tmppar                <- PAR[,LAT[[i]],mnth_ocn==k]
+      tmppar                <- PAR[,LAT[[i]],mnth==k]
       par[i,k]              <- mean(tmppar, na.rm=TRUE)
       
-      tmpk                  <- K[,LAT[[i]],mnth_ocn==k]
+      tmpk                  <- KD[,LAT[[i]],mnth==k]
       kd[i,k]               <- mean(tmpk, na.rm=TRUE)
       
-      tmpparmld             <- I[,LAT[[i]],mnth_ocn==k]
+      tmpparmld             <- I[,LAT[[i]],mnth==k]
       parmld[i,k]           <- mean(tmpparmld,na.rm=TRUE)
       
       e[i,k]    <- (1/(kd[i,k]*mld[i,k]))*par[i,k]*exp(-(kd[i,k]*mld[i,k]))*(1-exp(-(kd[i,k]*mld[i,k])))
