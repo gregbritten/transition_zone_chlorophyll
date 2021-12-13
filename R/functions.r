@@ -131,3 +131,18 @@ plotcormap <- function(Z,lab){
 zonalcor <- function(cormap){
   return(apply(cormap,2,mean,na.rm = TRUE))
 }
+
+##--INTERPOLATE SODA FIELDS--################################
+interp <- function(X,timex,timey){
+  Y <- array(NA,dim=c(130,130,length(timey)))
+  for(i in 1:130){
+    for(j in 1:130){
+      tmp <- X[i,j,]
+      if(sum(!is.na(tmp))>10){
+        Y[i,j,] <- approx(x=timex,y=tmp,xout=timey)$y
+      }
+    }
+  }
+  return(Y)
+}
+

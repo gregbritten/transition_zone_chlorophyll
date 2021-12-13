@@ -20,6 +20,12 @@ load(file='processed_data/time.rds')
 load(file='processed_data/WOA_N.rds')
 load(file='processed_data/WOA_depth.rds')
 
+load(file='processed_data/ML_soda.rds')
+load(file='processed_data/time_soda.rds')
+soda_i <- 1:length(time_soda)
+I_soda <- (1/(KD[,,soda_i]*ML_soda))*PAR[,,soda_i]*exp(-(KD[,,soda_i]*ML_soda))*(1-exp(-(KD[,,soda_i]*ML_soda)))
+
+
 CARBON_GIOP <- 13000*(BBP_GIOP - 0.00035)
 CARBON_GSM  <- 13000*(BBP_GSM  - 0.00035)
 
