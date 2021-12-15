@@ -34,6 +34,7 @@ CHL_GIOP[CHL_GIOP>50] <- NA
 
 lat  <- seq(0,65,length.out=130)
 lon  <- seq(-180,-115,length.out=130)
+loni <- which(lon>=-180 & lon <=-115)
 
 LAT <- list()
 LAT[['lat00_10']] <- which(lat >=0  & lat <10)

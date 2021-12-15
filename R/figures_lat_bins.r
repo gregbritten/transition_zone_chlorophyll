@@ -9,8 +9,6 @@ source("r/functions.r")
 labs <- c('f) 00-10 Deg. N', 'e) 10-20 Deg. N', 'd) 20-30 Deg. N', 'c) 30-40 Deg. N', 'b) 40-50 Deg. N', 'a) 50-60 Deg. N')
 timedims <- c(2003,2021)
 ticks <- 2003:2021
-loni <- which(lon>=-180 & lon <=-115)
-
 
 ######################################################################
 ## COMPARE GIOP and GSM ##############################################
@@ -232,7 +230,7 @@ dev.off()
 ## CHL:C vs. MLD-averaged IRRADIANCE ######################
 ###########################################################
 cols <-viridis(12)
-labs <- c('00-10 Deg. N', '10-20 Deg. N', '20-30 Deg. N', '30-40 Deg. N', '40-50 Deg. N', '50-60 Deg. N')
+labs <- c('f) 00-10 Deg. N', 'e) 10-20 Deg. N', 'd) 20-30 Deg. N', 'c) 30-40 Deg. N', 'b) 40-50 Deg. N', 'a) 50-60 Deg. N')
 
 ##--GIOP--#############################
 pdf('plots/CHLC_vs_I_giop.pdf',height=6,width=6)
@@ -242,7 +240,7 @@ for(i in 6:1){
   if(i==5){image.plot(matrix(1:12),col=cols,legend.only=TRUE)}
   mtext(labs[i],adj=0,cex=0.5)
 }
-mtext(side=1,outer=TRUE,expression('Mixed Layer Averaged Irradiance ['*mu*'Mol/m'^2*'/s]'),line=0.8) 
+mtext(side=1,outer=TRUE,expression('Mixed Layer Averaged Irradiance ['*mu*'Mol quanta/m'^2*'/s]'),line=0.8) 
 mtext(side=2,outer=TRUE,expression('Chlorophyll:Carbon Ratio [mgChl/mgC]'),line=1) 
 dev.off()
 
@@ -254,7 +252,7 @@ for(i in 6:1){
   if(i==5){image.plot(matrix(1:12),col=cols,legend.only=TRUE)}
   mtext(labs[i],adj=0,cex=0.5)
 }
-mtext(side=1,outer=TRUE,expression('Mixed Layer Averaged Irradiance ['*mu*'Mol/m'^2*'/s]'),line=0.8) 
+mtext(side=1,outer=TRUE,expression('Mixed Layer Averaged Irradiance ['*mu*'Mol quanta/m'^2*'/s]'),line=0.8) 
 mtext(side=2,outer=TRUE,expression('Chlorophyll:Carbon Ratio [mgChl/mgC]'),line=1) 
 dev.off()
 

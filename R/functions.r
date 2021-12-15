@@ -26,14 +26,14 @@ mapmean <- function(X,mnth){
 }
 
 ##--plot climatology
-plotmap <- function(x,y,z,zlim,lab1,lab2,lab3){
+plotmap <- function(x,y,z,zlim,lab1,lab2,lab3,legend=TRUE){
   image2(x=x,y=y,z=z,col=viridis(25),zlim=zlim)
   map(xlim=c(-180,-110),ylim=c(0,70),col='grey',fill=TRUE,add=TRUE) 
   box()
   mtext(adj=0,lab1,cex=0.8)
   mtext(adj=-0.1,lab2)
   mtext(adj=0,lab3,line=1.5)
-  image.plot(matrix(zlim),legend.only=TRUE,col=viridis(25))
+  if(legend==TRUE){image.plot(matrix(zlim),legend.only=TRUE,col=viridis(25))}
 }
 
 ##--bilinear interpolation

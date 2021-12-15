@@ -64,6 +64,39 @@ mtext(outer=TRUE,side=1,'Longitude',line=0.5)
 mtext(outer=TRUE,side=2,'Latitude',line=0.5)
 dev.off()
 
+
+##--NPP MAPS--################################################
+npplims <- c(1,3.5)
+pdf('plots/seasonal_maps_npp.pdf',height=9,width=7,useDingbats=FALSE)
+par(mfrow=c(4,2),mar=c(2,2,2,3.75),oma=c(3,3,2,2),xpd=FALSE)
+plotmap(x=lon,y=lat,z=log10(mapmean(VGPM,8)),zlim=npplims,legend=FALSE,
+        lab1=expression('log'['10']*'(VGPM NPP [mg/m'^2*'/day])'),
+        lab2='a)',
+        lab3='August')
+plotmap(x=lon,y=lat,z=log10(mapmean(VGPM,2)),zlim=npplims,
+        lab1=expression(''),
+        lab2='b)',lab3='February')
+plotmap(x=lon,y=lat,z=log10(mapmean(EP_VGPM,8)),zlim=npplims,legend=FALSE,
+        lab1=expression('log'['10']*'(Eppley VGPM NPP [mg/m'^2*'/day])'),
+        lab2='c)',lab3='')
+plotmap(x=lon,y=lat,z=log10(mapmean(EP_VGPM,2)),zlim=npplims,legend=FALSE,
+        lab1=expression(''),
+        lab2='d)',lab3='')
+plotmap(x=lon,y=lat,z=log10(mapmean(CBPM,8)),zlim=npplims,legend=FALSE,
+        lab1=expression('log'['10']*'(CBPM NPP [mg/m'^2*'/day])'),lab2='e)',lab3='')
+plotmap(x=lon,y=lat,z=log10(mapmean(CBPM,2)),zlim=npplims,legend=FALSE,
+        lab1='',lab2='f)',lab3='')
+plotmap(x=lon,y=lat,z=log10(mapmean(CAFE,8)),zlim=npplims,legend=FALSE,
+        lab1=expression('log'['10']*'(CAFE NPP [mg/m'^2*'/day])'),lab2='g)',lab3='')
+plotmap(x=lon,y=lat,z=log10(mapmean(CAFE,2)),zlim=npplims,legend=FALSE,
+        lab1='',lab2='h)',lab3='')
+
+
+mtext(outer=TRUE,side=1,'Longitude',line=0.5)
+mtext(outer=TRUE,side=2,'Latitude',line=0.5)
+dev.off()
+
+
 #######################################################################################
 ## CORRELATION MAPS ###################################################################
 #######################################################################################

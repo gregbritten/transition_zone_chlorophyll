@@ -31,20 +31,21 @@ nflux[nflux<0] <- 0
 ######################################################
 ## PLOT ##############################################
 ######################################################
-labs <- c('00-10 Deg. N', '10-20 Deg. N', '20-30 Deg. N', '30-40 Deg. N', '40-50 Deg. N', '50-60 Deg. N')
-
 pdf('plots/surfI_MLD_MLDI_lats.pdf',height=6,width=7)
 par(mfrow=c(3,1),mar=c(2,4,1,8),oma=c(2,2,2,6)) 
 matplot(t(monthmean(PAR)),type='l',col=viridis(6),lty=c(1,1,1,2,1,1),ylab='',xlab='')
   mtext('Surface Irradiance',side=2,line=3.5)
   mtext(expression(mu*'E/m'^2*'/s'),side=2,line=2.25,cex=0.7)
   image.plot(matrix(c(10,60)), legend.only=TRUE,col=viridis(6))  
+  mtext(adj=0,'a)')
 matplot(t(monthmean(MLD)),type='l',col=viridis(6),lty=c(1,1,1,2,1,1),ylab='',xlab='')
   mtext('MLD',side=2,line=3.5)
   mtext('[m]',side=2,line=2.5,cex=0.7)
+  mtext(adj=0,'b)')
 matplot(t(e),type='l',col=viridis(6),lty=c(1,1,1,2,1,1),ylab='',xlab='')
   mtext('MLD-average Irradiance',side=2,line=3.5)
-  mtext(expression(mu*'E/m'^2*'/s'),side=2,line=2.25,cex=0.7)
+  mtext(expression(mu*'Mol quanta/m'^2*'/s'),side=2,line=2.25,cex=0.7)
+  mtext(adj=0,'c)')
 dev.off()
 
 
@@ -54,17 +55,20 @@ matplot(t(monthmean(MLD)),type='l',col=viridis(6),lty=c(1,1,1,2,1,1),ylab='',xla
   mtext('MLD',side=2,line=3.5)
   mtext('[m]',side=2,line=2.5,cex=0.7)
   image.plot(matrix(c(10,60)), legend.only=TRUE,col=viridis(6))  
+  mtext(adj=0,'a)')
 matplot(dmld,type='l',col=viridis(6),lty=c(1,1,1,2,1,1),ylab='',xlab='')
   mtext('dMLD/dt',side=2,line=3.5)
   mtext('[m/month]',side=2,line=2.5,cex=0.7)
-  
-abline(h=0,lty=1,lwd=1)
+  mtext(adj=0,'b)')  
+  abline(h=0,lty=1,lwd=1.5)
 matplot(t(dn),type='l',col=viridis(6),lty=c(1,1,1,2,1,1),ylab='',xlab='')
   mtext(expression(italic('N'['0']~'- N')),side=2,line=3.5)
   mtext(expression('[mmol/m'^3*']'),side=2,line=2.25,cex=0.7)
+  mtext(adj=0,'c)')
 matplot(nflux,type='l',ylim=c(0,60),col=viridis(6),lty=c(1,1,1,2,1,1),ylab='',xlab='')  
   mtext(expression(italic('F'['N'])),side=2,line=3.5)
   mtext(expression('[mmol/m'^2*'/month]'),side=2,line=2.25,cex=0.7)
+  mtext(adj=0,'d)')
 dev.off()
   
 
