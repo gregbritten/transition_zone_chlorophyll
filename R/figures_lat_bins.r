@@ -179,6 +179,33 @@ mtext(outer=TRUE, side=4, expression('Carbon Concentration [mg/m'^3*']'),line=0.
 dev.off()
 
 
+chllims  <- c(0,2)
+timedims <- c(2003,2021)
+cdims    <- c(15,50) 
+
+##--GIOP--################
+pdf('plots/chl_vs_c_time_series_giop_same_axis.pdf',height=6,width=8)
+par(mfrow=c(6,1),mar=c(1,2,1,2),oma=c(2,3,2,3),cex.axis=0.7)
+for(i in 6:1){
+  chli <- latmean(CHL_GIOP,loni=loni,lati=LAT[[i]])
+  ci   <- latmean(CARBON_GIOP,loni=loni,lati=LAT[[i]])
+  plot(time,chli,type='l',col='dark green',yaxt='n',xlim=timedims,xaxt='n',ylim=chllims); 
+  axis(side=2,col='dark green'); 
+  axis(1,labels=NA,at=ticks)
+  
+  par(new=TRUE)
+  plot(time,ci,type='l',col='black',xaxt='n',yaxt='n',xlim=timedims,ylim=cdims)
+  axis(4,col='black')
+  abline(v=ticks,lty=2)
+  mtext(adj=0,labs[i],cex=0.6)
+  mtext(paste(round(cor(chli,ci,use='pairwise.complete.obs'),3)),adj=1,cex=0.6)
+}
+axis(1,at=ticks)
+mtext(outer=TRUE, side=2, expression('Chlorophyll Concentration [mg/m'^3*']'))
+mtext(outer=TRUE, side=4, expression('Carbon Concentration [mg/m'^3*']'),line=0.75)
+dev.off()
+
+
 ##--GSM--##################
 pdf('plots/chl_vs_c_time_series_gsm.pdf',height=6,width=8)
 par(mfrow=c(6,1),mar=c(1,2,1,2),oma=c(2,3,2,3),cex.axis=0.7)
