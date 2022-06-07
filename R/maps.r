@@ -3,6 +3,7 @@ rm(list=ls())
 library(viridis)
 library(maps)
 library(fields)
+library(lubridate)
 
 source('r/load_data.r')
 source('r/functions.r')
@@ -36,8 +37,8 @@ plotmap(x=lon,y=lat,z=log10(mapmean(CARBON_GIOP,2)),zlim=clims,
         lab1='',lab2='e)',lab3='')
 plotmap(x=lon,y=lat,z=mapmean(CHL_GIOP,2)/mapmean(CARBON_GIOP,2),zlim=chl_c_lims,
         lab1='',lab2='f)',lab3='')
-mtext(outer=TRUE,side=1,'Longitude',line=0.5)
-mtext(outer=TRUE,side=2,'Latitude',line=0.5)
+mtext(outer=TRUE,side=1,'Longitude',line=0.5,cex=1.1)
+mtext(outer=TRUE,side=2,'Latitude',line=0.5,cex=1.1)
 dev.off()
 
 ##-GSM-#############################################

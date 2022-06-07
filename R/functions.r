@@ -16,7 +16,7 @@ image2 <- function(x,y,z,zlim,col){
   tmp <- z
   tmp[tmp>zlim[2]] <- zlim[2]
   tmp[tmp<zlim[1]] <- zlim[1]
-  image(x,y,tmp,col=col)
+  image(x,y,tmp,col=col,cex.axis=1.1)
 }
 
 ##--compute annual mean climatology
@@ -30,10 +30,10 @@ plotmap <- function(x,y,z,zlim,lab1,lab2,lab3,legend=TRUE){
   image2(x=x,y=y,z=z,col=viridis(25),zlim=zlim)
   map(xlim=c(-180,-110),ylim=c(0,70),col='grey',fill=TRUE,add=TRUE) 
   box()
-  mtext(adj=0,lab1,cex=0.8)
-  mtext(adj=-0.1,lab2)
-  mtext(adj=0,lab3,line=1.5)
-  if(legend==TRUE){image.plot(matrix(zlim),legend.only=TRUE,col=viridis(25))}
+  mtext(adj=0,lab1,cex=1.1)
+  mtext(adj=-0.1,lab2,cex=1.1)
+  mtext(adj=0,lab3,line=1.5,cex=1.1)
+  if(legend==TRUE){image.plot(matrix(zlim),legend.only=TRUE,col=viridis(25),axis.args=list(cex.axis=1.1))}
 }
 
 ##--bilinear interpolation

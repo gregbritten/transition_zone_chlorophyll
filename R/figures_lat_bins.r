@@ -163,19 +163,19 @@ for(i in 6:1){
   chli <- latmean(CHL_GIOP,loni=loni,lati=LAT[[i]])
   ci   <- latmean(CARBON_GIOP,loni=loni,lati=LAT[[i]])
   plot(time,chli,type='l',col='dark green',yaxt='n',xlim=timedims,xaxt='n'); 
-  axis(side=2,col='dark green'); 
+  axis(side=2,col='dark green',cex.axis=1.1); 
   axis(1,labels=NA,at=ticks)
   
   par(new=TRUE)
   plot(time,ci,type='l',col='black',xaxt='n',yaxt='n',xlim=timedims)
-  axis(4,col='black')
+  axis(4,col='black',cex.axis=1.1)
   abline(v=ticks,lty=2)
-  mtext(adj=0,labs[i],cex=0.6)
-  mtext(paste(round(cor(chli,ci,use='pairwise.complete.obs'),3)),adj=1,cex=0.6)
+  mtext(adj=0,labs[i],cex=0.8)
+  mtext(paste(round(cor(chli,ci,use='pairwise.complete.obs'),3)),adj=1,cex=0.8)
 }
-axis(1,at=ticks)
-mtext(outer=TRUE, side=2, expression('Chlorophyll Concentration [mg/m'^3*']'))
-mtext(outer=TRUE, side=4, expression('Carbon Concentration [mg/m'^3*']'),line=0.75)
+axis(1,at=ticks,cex.axis=1.1)
+mtext(outer=TRUE, side=2, expression('Chlorophyll Concentration [mg/m'^3*']'),cex=1.1,line=0.25)
+mtext(outer=TRUE, side=4, expression('Carbon Concentration [mg/m'^3*']'),line=0.85,cex=1.1)
 dev.off()
 
 
